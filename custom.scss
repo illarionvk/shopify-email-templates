@@ -1,0 +1,54 @@
+/* Your custom styles go here */
+
+$border-color: #bbb;
+
+.products-table {
+  width: 100%;
+  margin-bottom: 1em;
+
+  thead {
+    tr {
+      border-top: 1px solid $border-color;
+      th {
+        text-align: center;
+
+        &.product-description {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: 1px solid $border-color;
+      }
+
+      td {
+        padding-top: 10px;
+        vertical-align: middle;
+
+        &.product-image {
+          padding-right: 5px;
+          width: 100px;
+        }
+
+        &.product-description {
+          text-align: left;
+        }
+
+        &.qty,
+        &.price {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.contacts-for-questions {
+  margin-top: 1em;
+}

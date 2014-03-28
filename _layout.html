@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+      <link rel="stylesheet" href="_ink.css">
+      <link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+    <table class="body">
+      <tr>
+        <td class="center" align="center" valign="top">
+          <center>
+            <!-- HEADER -->
+            <table class="row header">
+              <tr>
+                <td class="center" align="center">
+                  <center>
+
+                    <table class="container">
+                      <tr>
+                        <td class="wrapper last">
+
+                          <table class="twelve columns">
+                            <tr class="b-header">
+                              <td class="six sub-columns">
+                                <!-- {{ 'logo.png' | asset_url | img_tag }} -->
+                                <img src="http://placehold.it/350x150" alt="" />
+                              </td>
+                              <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
+                                Order {{ name }}
+                                <!--<span class="template-label">BASIC</span>-->
+                              </td>
+                              <td class="expander"></td>
+                            </tr>
+                          </table>
+
+                        </td>
+                      </tr>
+                    </table>
+
+                  </center>
+                </td>
+              </tr>
+            </table>
+            <!-- END OF HEADER -->
+
+            <table class="container">
+              <tr>
+                <td>
+
+                  <table class="row">
+                    <tr>
+                      <td class="wrapper last">
+
+                        <table class="twelve columns">
+                          <tr>
+                            <td>
+                              <!-- Email Content -->
+                              <%= contents %>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+
+                      </td>
+                    </tr>
+                  </table>
+                <!-- container end below -->
+                </td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+

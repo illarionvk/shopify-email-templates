@@ -1,0 +1,27 @@
+/* Your custom styles go here */
+.products-table {
+  width: 100%;
+  margin-bottom: 1em; }
+  .products-table thead tr {
+    border-top: 1px solid #bbbbbb; }
+    .products-table thead tr th {
+      text-align: center; }
+      .products-table thead tr th.product-description {
+        text-align: left; }
+  .products-table tbody tr {
+    border-top: 1px solid #bbbbbb; }
+    .products-table tbody tr:last-child {
+      border-bottom: 1px solid #bbbbbb; }
+    .products-table tbody tr td {
+      padding-top: 10px;
+      vertical-align: middle; }
+      .products-table tbody tr td.product-image {
+        padding-right: 5px;
+        width: 100px; }
+      .products-table tbody tr td.product-description {
+        text-align: left; }
+      .products-table tbody tr td.qty, .products-table tbody tr td.price {
+        text-align: center; }
+
+.contacts-for-questions {
+  margin-top: 1em; }

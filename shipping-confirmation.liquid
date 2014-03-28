@@ -1,0 +1,51 @@
+<p class="lead">Dear {{ billing_address.name }},</p>
+<p class="lead">
+{% if fulfillment.line_items.size == line_items.size %}
+  All
+{% elsif unfulfilled_line_items.size == 0 %}
+  The last
+{% else %}
+  Some
+{% endif %}
+of the items from order {{ name }} have now been shipped:
+</p>
+
+<p>{% for line in fulfillment.line_items %}<img src="{{ line.product.featured_image | product_img_url: 'small' }}" />{{ line.quantity }}x {{ line.title }}
+{% endfor %}</p>
+
+{% if requires_shipping %}
+  <p>They are being shipped {% if fulfillment.tracking_company %}via {{ fulfillment.tracking_company }} {% endif %}to the following address: </p>
+
+  <p><b>Shipping address</b><br />
+  {{ shipping_address.name }}<br />
+  {{ shipping_address.street }}<br />
+  {{ shipping_address.city }}<br />
+  {{ shipping_address.province }}
+  {{ shipping_address.zip }}<br />
+  {{ shipping_address.country }}</p>
+
+  {% if fulfillment.tracking_numbers %}
+    <p>
+    The tracking number for these items is
+    {% if fulfillment.tracking_company contains 'Other' %}
+      {% for number in fulfillment.tracking_numbers %}
+        {{ number }}
+        {% assign lnumber = number | downcase %}
+        {% if lnumber contains 'la' or lnumber contains 'ka' %}
+          <!-- Insert your shipping company -->
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {{ fulfillment.tracking_numbers }} by {{ fulfillment.tracking_company }}
+    {% endif %}
+    </p>
+    <p>Please allow some time for the status of the shipment to correctly display at the above address.</p>
+  {% endif %}
+{% endif %}
+
+{% if unfulfilled_line_items.size > 0 %}
+  <p>You will receive a confirmation email when more items from your order have been shipped.</p>
+{% endif %}
+
+<p>Thank you for ordering from {{ shop_name }}!</p>
+

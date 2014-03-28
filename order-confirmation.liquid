@@ -1,0 +1,90 @@
+<p class="lead">Thank you for placing your order with {{ shop_name }}!</p>
+<p class="lead">This email is to confirm your recent order.</p>
+<p>Date {{ date | date: "%m/%d/%Y" }}</p>
+
+{% if requires_shipping %}
+<p>
+  <b>Shipping address</b><br />
+  {{ shipping_address.name }}<br />
+  {{ shipping_address.street }}<br />
+  {{ shipping_address.city }}<br />
+  {{ shipping_address.province }}
+  {{ shipping_address.zip }}<br />
+  {{ shipping_address.country }}
+</p>
+{% endif %}
+
+<p>
+  <b>Billing address</b><br />
+  {{ billing_address.name }}<br />
+  {{ billing_address.street }}<br />
+  {{ billing_address.city }}<br />
+  {{ billing_address.province }}
+  {{ billing_address.zip }}<br />
+  {{ billing_address.country }}
+</p>
+
+<table class="products-table">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th class="product-description">
+        Description
+      </th>
+      <th>
+        Qty
+      </th>
+      <th>
+        Price
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in line_items %}
+    <tr>
+      <td class="product-image">
+        <img src="{{ line.product.featured_image | product_img_url: 'small' }}" />
+      </td>
+      <td class="product-description">
+        {{ line.title }}
+        {% for p in line.properties %}
+          {% unless p.last == blank %}
+            <br /> - {{ p.first }}: {{ p.last }}
+          {% endunless %}
+        {% endfor %}
+      </td>
+      <td class="qty">
+        {{ line.quantity }} 
+      </td>
+      <td class="price">
+        {{ line.price | money }} each
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="order-total-costs">
+  {% if discounts %}
+    <p>Discounts: {{ discounts_savings | money_with_currency }}</p>
+  {% endif %}
+
+  <p>Subtotal: {{ subtotal_price | money_with_currency }}</p>
+
+  {% for tax_line in tax_lines %}
+    <p>{{ tax_line.title }}: {{ tax_line.price | money_with_currency }}</p>
+  {% endfor %}
+
+  {% if requires_shipping %}
+    <p>Shipping: {{ shipping_price | money_with_currency }}</p>
+  {% endif %}
+
+  <p><strong>Total: {{ total_price | money_with_currency }}</strong></p>
+</div>
+
+<p class="contacts-for-questions">
+  <em>
+    If you have questions about your order, please call <strong>{{ shop.phone | prepend: '+' }}</strong> or send a message to <a href="mailto:{{ shop.email }}">{{ shop.email }}</a>
+  </em>
+</p>

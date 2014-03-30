@@ -1,0 +1,17 @@
+{% if billing_address.name %}
+<p>Dear {{ billing_address.name }},</p>
+{% endif %}
+
+<p>The following shipped items from order {{ name }} have been updated with new shipping information:</p>
+
+<ul style="list-style-type:none">
+  {% for line in fulfillment.fulfillment_line_items %}<li>
+    <img src="{{ line.line_item.product.featured_image | product_img_url: 'small' }}" />
+    {{ line.quantity }}x {{ line.line_item.title }}
+  </li>{% endfor %}
+</ul>
+
+<p>They are being shipped{% if fulfillment.tracking_company %} via {{ fulfillment.tracking_company }}{% endif %} with tracking number {{ fulfillment.tracking_number }}. <a href="{{ fulfillment.tracking_url }}">Click here to see the status of this shipment</a>.</p>
+
+<p>Please allow some time for the status of the shipment to correctly display at the above address.</p>
+

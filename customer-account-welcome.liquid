@@ -1,0 +1,11 @@
+{% if customer.name %}
+<p>Dear {{ customer.name }},</p>
+<p></p>
+{% endif %}
+<p>This is to confirm that your account for the shop {{ shop.name }} is now active.</p>
+<p></p>
+<p>The next time you shop at {{ shop.name }}, you can save time at checkout by logging into your account. This will prefill your address information at the checkout. </p>
+<p></p>
+<p>Thank you,</p>
+<p>{{ shop.name }}</p>
+

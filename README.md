@@ -8,3 +8,5 @@ A collection of Shopify e-mail templates.
 - Wraps Liquid template in HTML layout
 - Compiles Sass stylesheets
 - Inlines CSS styles
+
+![Example of Order Confirmation Email Output](/output/order-confirmation.jpg)

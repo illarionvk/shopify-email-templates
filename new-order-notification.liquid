@@ -1,23 +1,68 @@
-<p>{{ shop_name }},</p>
-<p></p>
-<p>{{ billing_address.name }} placed a new order with you today ({{ date | date: "%b %d %I:%M%p" }}).</p>
-<p></p>
-<p>Payment method:</p>
-<p>{{ gateway }}{% if requires_shipping %}</p>
-<p></p>
-<p>Delivery method:</p>
-<p>{% for shipping_method in shipping_methods %}{{ shipping_method.title }}</p>
-<p>  {% endfor %}</p>
-<p></p>
-<p>Shipping address:</p>
-<p>  {{ shipping_address.name }}</p>
-<p>  {{ shipping_address.street }}</p>
-<p>  {{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}</p>
-<p>  {{ shipping_address.country }}</p>
-<p>  {{ shipping_address.phone }}{% endif %}</p>
-<p></p>
-<p></p>
-<ul>  {% for line in line_items %} <li> <img src="{{ line.product.featured_image | product_img_url: 'thumb' }}" /> {{ line.quantity }}x {{ line.title }} for {{ line.price | money }} each <br />{% for p in line.properties %}{% unless p.last == blank %} - {{ p.first }}: {{ p.last }}{% endunless %}{% endfor %}</li> {% endfor %} </ul>
+<p class="lead">{{ shop_name }},</p>
+<p class="lead">{{ billing_address.name }} placed a new order with you today ({{ date | date: "%b %d %I:%M%p" }}).</p>
 
-<a href="{{ shop.url }}/admin/orders/{{ id }}">View order {{order_name}} </a>
+<h4>Payment method:</h4>
+<p>{{ gateway }}</p>
+
+{% if requires_shipping %}
+<h4>Delivery method:</h4>
+<p>
+{% for shipping_method in shipping_methods %}
+  {{ shipping_method.title }}{% unless forloop.last %}<br />{% endunless %}
+{% endfor %}
+</p>
+
+<h4>Shipping address:</h4>
+<p>
+  {{ shipping_address.name }}<br />
+  {{ shipping_address.street }}<br />
+  {{ shipping_address.city }}<br />
+  {{ shipping_address.province }} {{ shipping_address.zip }}<br />
+  {{ shipping_address.country }}
+</p>
+<p>{{ shipping_address.phone }}</p>
+{% endif %}
+
+<table class="products-table">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th class="product-description">
+        Description
+      </th>
+      <th>
+        Qty
+      </th>
+      <th>
+        Price
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in line_items %}
+    <tr>
+      <td class="product-image">
+        <img src="{{ line.product.featured_image | product_img_url: 'small' }}" />
+      </td>
+      <td class="product-description">
+        {{ line.title }}
+        {% for p in line.properties %}
+          {% unless p.last == blank %}
+            <br /> - {{ p.first }}: {{ p.last }}
+          {% endunless %}
+        {% endfor %}
+      </td>
+      <td class="qty">
+        {{ line.quantity }} 
+      </td>
+      <td class="price">
+        {{ line.price | money }} each
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{{ shop.url }}/admin/orders/{{ id }}">View order {{order_name}}</a></p>
 

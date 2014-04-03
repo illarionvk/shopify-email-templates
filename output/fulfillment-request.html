@@ -57,74 +57,44 @@
                           <tr style="padding: 0; vertical-align: top; text-align: left;">
                             <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: top; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px;">
                               <!-- Email Content -->
-                              <p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">{{ shop_name }},</p>
-<p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">{{ billing_address.name }} placed a new order with you today ({{ date | date: "%b %d %I:%M%p" }}).</p>
-
-<h4 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 28px;">Payment method:</h4>
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ gateway }}</p>
-
-{% if requires_shipping %}
-<h4 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 28px;">Delivery method:</h4>
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">
-{% for shipping_method in shipping_methods %}
-  {{ shipping_method.title }}{% unless forloop.last %}<br />{% endunless %}
+                              <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ service_name }},</p>
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Please fulfill order {{ name }}.</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Total number of items: {{ fulfillment.item_count }}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Unique items: {{ fulfillment.fulfillment_line_items.size }}</p>
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><strong>Items to fulfill:</strong></p>
+{% for line in fulfillment.fulfillment_line_items %}
+  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Variant Title: {{ line.line_item.title }}</p>
+  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">SKU: {{ line.line_item.sku }}</p>
+  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Quantity: {{ line.quantity }}</p>
+  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Grams: {{ line.line_item.grams }}</p>
+  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Vendor: {{ line.line_item.vendor }}</p>
 {% endfor %}
-</p>
-
-<h4 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 28px;">Shipping address:</h4>
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">
-  {{ shipping_address.name }}<br />
-  {{ shipping_address.street }}<br />
-  {{ shipping_address.city }}<br />
-  {{ shipping_address.province }} {{ shipping_address.zip }}<br />
-  {{ shipping_address.country }}
-</p>
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.phone }}</p>
+{% if shipping_address %}
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><strong>Shipping Address:</strong></p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.name }}{% if shipping_address.company %}
+  {{ shipping_address.company }}{% endif %}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.address1 }}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.address2 }}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.city }}, {{ shipping_address.province }}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.zip }}</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shipping_address.country }}</p>
+{% if shipping_address.phone %}<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Phone: {{ shipping_address.phone }}</p>{% endif %}
 {% endif %}
-
-<table class="products-table" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; width: 100%; margin-bottom: 1em;">
-  <thead>
-    <tr style="padding: 0; vertical-align: top; text-align: left; border-top: 1px solid #bbbbbb;">
-      <th style="text-align: center;">
-      </th>
-      <th class="product-description" style="text-align: left;">
-        Description
-      </th>
-      <th style="text-align: center;">
-        Qty
-      </th>
-      <th style="text-align: center;">
-        Price
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for line in line_items %}
-    <tr style="padding: 0; vertical-align: top; text-align: left; border-top: 1px solid #bbbbbb; border-bottom: 1px solid #bbbbbb;">
-      <td class="product-image" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px; padding-right: 5px; width: 100px;">
-        <img src="{{ line.product.featured_image | product_img_url: 'small' }}" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" />
-      </td>
-      <td class="product-description" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px;">
-        {{ line.title }}
-        {% for p in line.properties %}
-          {% unless p.last == blank %}
-            <br /> - {{ p.first }}: {{ p.last }}
-          {% endunless %}
-        {% endfor %}
-      </td>
-      <td class="qty" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: center; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px;">
-        {{ line.quantity }}&nbsp;
-      </td>
-      <td class="price" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: center; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px;">
-        {{ line.price | money }}&nbsp;each
-      </td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><a href="{{ shop.url }}/admin/orders/{{ id }}" style="color: #2ba6cb; text-decoration: none;">View order {{order_name}}</a></p>
-
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><strong>Shipping Method:</strong></p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{% if shipping_method %}{{ shipping_method.title }}{% else %}None{% endif %}</p>
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><strong>Tracking Number:</strong></p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{% if fulfillment.tracking_number %}{{ fulfillment.tracking_number }}{% else %}None{% endif %}</p>
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><strong>Customer Email:</strong></p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ email }}</p>
+<br />
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Thank you,</p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ shop_name }}</p>
 
                             </td>
                             <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px;"></td>

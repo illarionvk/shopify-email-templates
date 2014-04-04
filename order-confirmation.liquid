@@ -6,7 +6,10 @@
 <p>
   <b>Shipping address</b><br />
   {{ shipping_address.name }}<br />
-  {{ shipping_address.street }}<br />
+  {{ shipping_address.address1 }}<br />
+  {% if shipping_address.address2 != nil %}
+    {{ shipping_address.address2 }}<br />
+  {% endif %}
   {{ shipping_address.city }}<br />
   {{ shipping_address.province }} {{ shipping_address.zip }}<br />
   {{ shipping_address.country }}
@@ -16,7 +19,10 @@
 <p>
   <b>Billing address</b><br />
   {{ billing_address.name }}<br />
-  {{ billing_address.street }}<br />
+  {{ billing_address.address1 }}<br />
+  {% if billing_address.address2 != nil %}
+    {{ billing_address.address2 }}<br />
+  {% endif %}
   {{ billing_address.city }}<br />
   {{ billing_address.province }}
   {{ billing_address.zip }}<br />

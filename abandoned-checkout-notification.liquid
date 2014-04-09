@@ -1,16 +1,16 @@
-<p>Hey{% if billing_address.name %} {{ billing_address.name }}{% endif %},</p>
-<p></p>
-<p>Your shopping cart at {{ shop_name }} has been reserved and is waiting for your return!</p>
-<p></p>
+<p class="lead">Hey{% if billing_address.name %} {{ billing_address.name }}{% endif %},</p>
+<p class="lead">Your shopping cart at {{ shop_name }} has been reserved and is waiting for your return!</p>
+
 <p>In your cart, you left:</p>
-<p></p>
-<p>{% for line in line_items %}{{ line.quantity }}x {{ line.title }}{% endfor %}</p>
-<p></p>
+<ul>
+  {% for line in line_items %}
+  <li>
+    {{ line.quantity }} x {{ line.title }}
+  </li>
+  {% endfor %}
+</ul>
 <p>But it's not too late! To complete your purchase, click this link:</p>
-<p></p>
 <p>{{ url }}</p>
-<p></p>
-<p>Thanks for shopping!</p>
-<p></p>
-<p>{{ shop_name }}</p>
+<p>Thanks for shopping!<br />
+{{ shop_name }}</p>
 

@@ -23,5 +23,8 @@
       .products-table tbody tr td.qty, .products-table tbody tr td.price {
         text-align: center; }
 
+.products-table.fulfillment thead tr th {
+  text-align: left; }
+
 .contacts-for-questions {
   margin-top: 1em; }

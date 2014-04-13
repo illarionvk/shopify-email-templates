@@ -49,6 +49,16 @@ $border-color: #bbb;
   }
 }
 
+.products-table.fulfillment {
+  thead {
+    tr {
+      th {
+        text-align: left;
+      }
+    }
+  }
+}
+
 .contacts-for-questions {
   margin-top: 1em;
 }

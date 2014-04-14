@@ -1,14 +1,11 @@
-<div style="font-family:Sans-Serif;font-size:12px;width:100%;margin:5px;">
-  <p>Hi{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},</p>
+<p class="lead">Hi{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},</p>
+<p class="lead">Here is your <a href="{{ shop.url }}">{{ shop.name }}</a> gift card for {{ gift_card.initial_value | money_without_trailing_zeros }}.</p>
 
-  <p>Here is your <a href="{{ shop.url }}">{{ shop.name }}</a> gift card for {{ gift_card.initial_value | money_without_trailing_zeros }}.</p>
-
-  {% if gift_card.initial_value != gift_card.balance %}
+{% if gift_card.initial_value != gift_card.balance %}
   <p>You have {{ gift_card.balance | money_without_trailing_zeros }} left on this gift card.</p>
-  {% endif %}
+{% endif %}
 
-  <p><a href="{{ gift_card.url }}">To view or print your gift card, click here</a></p>
+<p><a href="{{ gift_card.url }}">To view or print your gift card, click here</a></p>
 
-  <p>Thank you for shopping at <a href="{{ shop.url }}">{{ shop.name }}</a>!</p>
-</div>
+<p>Thank you for shopping at <a href="{{ shop.url }}">{{ shop.name }}</a>!</p>
 

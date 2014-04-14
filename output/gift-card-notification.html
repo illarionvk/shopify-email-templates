@@ -55,19 +55,16 @@
                           <tr style="padding: 0; vertical-align: top; text-align: left;">
                             <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: top; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px;">
                               <!-- Email Content -->
-                              <div style="font-family:Sans-Serif;font-size:12px;width:100%;margin:5px;">
-  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Hi{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},</p>
+                              <p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">Hi{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},</p>
+<p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">Here is your <a href="{{ shop.url }}" style="color: #2ba6cb; text-decoration: none;">{{ shop.name }}</a> gift card for {{ gift_card.initial_value | money_without_trailing_zeros }}.</p>
 
-  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Here is your <a href="{{ shop.url }}" style="color: #2ba6cb; text-decoration: none;">{{ shop.name }}</a> gift card for {{ gift_card.initial_value | money_without_trailing_zeros }}.</p>
-
-  {% if gift_card.initial_value != gift_card.balance %}
+{% if gift_card.initial_value != gift_card.balance %}
   <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">You have {{ gift_card.balance | money_without_trailing_zeros }} left on this gift card.</p>
-  {% endif %}
+{% endif %}
 
-  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><a href="{{ gift_card.url }}" style="color: #2ba6cb; text-decoration: none;">To view or print your gift card, click here</a></p>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;"><a href="{{ gift_card.url }}" style="color: #2ba6cb; text-decoration: none;">To view or print your gift card, click here</a></p>
 
-  <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Thank you for shopping at <a href="{{ shop.url }}" style="color: #2ba6cb; text-decoration: none;">{{ shop.name }}</a>!</p>
-</div>
+<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Thank you for shopping at <a href="{{ shop.url }}" style="color: #2ba6cb; text-decoration: none;">{{ shop.name }}</a>!</p>
 
 
                             </td>

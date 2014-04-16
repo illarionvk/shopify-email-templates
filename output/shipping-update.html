@@ -56,17 +56,40 @@
                             <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: top; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px;">
                               <!-- Email Content -->
                               {% if billing_address.name %}
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Dear {{ billing_address.name }},</p>
+<p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">Dear {{ billing_address.name }},</p>
 {% endif %}
 
-<p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">The following shipped items from order {{ name }} have been updated with new shipping information:</p>
+<p class="lead" style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 21px; font-size: 18px; margin-bottom: 10px;">The following shipped items from order {{ name }} have been updated with new shipping information:</p>
 
-<ul style="list-style-type:none">
-  {% for line in fulfillment.fulfillment_line_items %}<li>
-    <img src="{{ line.line_item.product.featured_image | product_img_url: 'small' }}" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" />
-    {{ line.quantity }}x {{ line.line_item.title }}
-  </li>{% endfor %}
-</ul>
+<table class="products-table" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; width: 100%; margin-bottom: 1em;">
+  <thead>
+    <tr style="padding: 0; vertical-align: top; text-align: left; border-top: 1px solid #bbbbbb;">
+      <th style="text-align: center;">
+      </th>
+      <th class="product-description" style="text-align: left;">
+        Description
+      </th>
+      <th style="text-align: center;">
+        Qty
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in fulfillment.fulfillment_line_items %}
+    <tr style="padding: 0; vertical-align: top; text-align: left; border-top: 1px solid #bbbbbb; border-bottom: 1px solid #bbbbbb;">
+      <td class="product-image" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px; padding-right: 5px; width: 100px;">
+        <img src="{{ line.line_item.product.featured_image | product_img_url: 'small' }}" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" />
+      </td>
+      <td class="product-description" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: left; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px;">
+        {{ line.line_item.title }}
+      </td>
+      <td class="qty" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0px 0px 10px; vertical-align: middle; text-align: center; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding-top: 10px;">
+        {{ line.quantity }}&nbsp;
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">They are being shipped{% if fulfillment.tracking_company %} via {{ fulfillment.tracking_company }}{% endif %} with tracking number {{ fulfillment.tracking_number }}. <a href="{{ fulfillment.tracking_url }}" style="color: #2ba6cb; text-decoration: none;">Click here to see the status of this shipment</a>.</p>
 

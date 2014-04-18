@@ -60,7 +60,7 @@
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Total number of items: {{ fulfillment.item_count }}</p>
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Unique items: {{ fulfillment.fulfillment_line_items.size }}</p>
 
-<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 20px;">Items to fulfill:</h6>
+<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 14px;">Items to fulfill:</h6>
 
 <table class="products-table fulfillment" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; width: 100%; margin-bottom: 1em;">
   <thead>
@@ -106,7 +106,7 @@
 </table>
 
 {% if shipping_address %}
-  <h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 20px;">Shipping Address:</h6>
+  <h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 14px;">Shipping Address:</h6>
   <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">
     {{ shipping_address.name }}
     {% if shipping_address.company %}
@@ -123,13 +123,13 @@
   {% endif %}
 {% endif %}
 
-<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 20px;">Shipping Method:</h6>
+<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 14px;">Shipping Method:</h6>
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{% if shipping_method %}{{ shipping_method.title }}{% else %}None{% endif %}</p>
 
-<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 20px;">Tracking Number:</h6>
+<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 14px;">Tracking Number:</h6>
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{% if fulfillment.tracking_number %}{{ fulfillment.tracking_number }}{% else %}None{% endif %}</p>
 
-<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 20px;">Customer Email:</h6>
+<h6 style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding: 0; margin: 0; text-align: left; line-height: 1.3; word-break: normal; font-size: 14px;">Customer Email:</h6>
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">{{ email }}</p>
 
 <p style="margin: 0; color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; text-align: left; line-height: 19px; font-size: 14px; margin-bottom: 10px;">Thank you,</p>

@@ -1,4 +1,21 @@
 /* Your custom styles go here */
+h1 {
+  font-size: 59px; }
+
+h2 {
+  font-size: 36px; }
+
+h3 {
+  font-size: 23px; }
+
+h4 {
+  font-size: 15px;
+  font-weight: bold; }
+
+h5, h6 {
+  font-size: 14px;
+  font-weight: bold; }
+
 .products-table {
   width: 100%;
   margin-bottom: 1em; }
